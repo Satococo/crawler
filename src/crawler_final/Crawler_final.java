@@ -24,7 +24,7 @@ public class Crawler_final {
     public static void main(String[] args) {
         try {
 
-            Q1("Minecraft: PlayStation4 Edition");
+            Q1("サンダル");
 
         }catch (IOException e) {
             e.printStackTrace();
@@ -40,10 +40,7 @@ public class Crawler_final {
 
 
 
-//        List<String> titleList = new ArrayList<>();
-//        List<Double> confidenceList = new ArrayList<>();
-//        List<>
-//
+
 
         String rootUrl = "https://search.rakuten.co.jp/search/mall/" + keyword + "/";
         Document doc = Jsoup.connect(rootUrl).get();
@@ -59,7 +56,7 @@ public class Crawler_final {
         String title = null;
         String itemUrl = null;
         String imgUrl = null;
-        
+
         for (int i = 1; i <= lastItemPage; i++) {
 
             try {
@@ -86,7 +83,7 @@ public class Crawler_final {
                 title = items.get(z).select("div.content.title > h2 > a").attr("title");
                 itemUrl = items.get(z).select("div.content.title > h2 > a").attr("href");
                 imgUrl = items.get(z).select("img._verticallyaligned").attr("src");
-                
+
                 String reviewPage = items.get(z).select("a.dui-rating-filter._link").attr("href");
 
                 if(reviewPage.isEmpty()) {
@@ -424,9 +421,9 @@ public class Crawler_final {
             }
         });
 
-        
+
         Path answerPath = Paths.get("c:/TechTraining/resources/crawler_final.html"); // 書き込み対象ファイルの場所を指定
-        
+
         try {
 
             Files.deleteIfExists(answerPath); // 既に存在してたら削除
@@ -437,7 +434,7 @@ public class Crawler_final {
             try(BufferedWriter bw = Files.newBufferedWriter(answerPath)) {
 
                 //1行ごとに結果を書き込む
-                
+
 
 
 
@@ -446,24 +443,24 @@ public class Crawler_final {
 
                     bw.write("<body>" + "\n" + "<h1>" + keyword + "ランキング" + "</h1>");
                     bw.newLine();;
-                    
+
                     bw.write("<ul>" + "\n");
 
 
                     for(int y = 0; y < list.size(); y++) {
-                        
-                  
+
+
                         bw.write("<div style=\"padding: 10px; margin-bottom: 10px; border: 5px double #333333;\">" + "<a href=\"" + urlMap.get(list.get(y).getKey()) + "\">" + (y + 1) + "位" + " : " + list.get(y).getKey() + "</a>");
                         bw.newLine();
-                        bw.write("<div align=\"left\"" + "\n" + "<img src=" + imgMap.get(list.get(y).getKey()) + ">" + "\n" + "</div>");
+                        bw.write("<img src=" + imgMap.get(list.get(y).getKey()) + ">");
                         bw.write("\n" + "</div>");
 
                         if(y == 50) {
                             break;
                         }
-                        
+
                     }
-                    
+
                     bw.write("</ul>");
 
 
@@ -471,7 +468,7 @@ public class Crawler_final {
 
 
 
-                
+
 
             }
 
@@ -479,8 +476,8 @@ public class Crawler_final {
             System.out.println(e);
         }
 
-        
-        
+
+
 
 
 
