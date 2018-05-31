@@ -24,7 +24,7 @@ public class Crawler_final {
     public static void main(String[] args) {
         try {
 
-            Q1("サンダル");
+            Q1("イオン発生器+デンソー");
 
         }catch (IOException e) {
             e.printStackTrace();
@@ -65,7 +65,7 @@ public class Crawler_final {
                 System.out.println(e);
             }
 
-            String itemPageUrl = "https://search.rakuten.co.jp/search/mall/" + keyword + "/?=" + i;
+            String itemPageUrl = "https://search.rakuten.co.jp/search/mall/" + keyword + "/?p=" + i;
             Document doc2 = Jsoup.connect(itemPageUrl).get();
             Elements items = doc2.select("div.dui-card.searchresultitem");
 
